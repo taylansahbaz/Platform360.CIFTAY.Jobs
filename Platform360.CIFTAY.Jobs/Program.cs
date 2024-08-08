@@ -1,33 +1,22 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
-using Platform360.CIFTAY.Jobs.Data;
-using Platform360.CIFTAY.Jobs.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Platform360.CIFTAY.Jobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Startup sýnýfýný kullanarak servisleri ve middleware'leri yapýlandýrýn
 builder.Services.AddControllers();
-builder.Services.AddDbContext<ciftayContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-builder.Services.AddScoped<ICalculatedDataService, CalculatedDataService>();
-
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-});
+builder.Services.AddSwaggerGen();
+
+// Startup sýnýfýný oluþturun ve yapýlandýrma iþlemlerini yapýn
+var startup = new Startup(builder.Configuration);
+startup.ConfigureServices(builder.Services);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseDeveloperExceptionPage();
-    app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
-}
+// Middleware yapýlandýrmasýný uygulayýn
+startup.Configure(app, app.Environment);
 
-app.UseHttpsRedirection();
-app.UseRouting();
-app.UseAuthorization();
-app.MapControllers();
 app.Run();
