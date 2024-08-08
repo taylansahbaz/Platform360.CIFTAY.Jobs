@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Platform360.CIFTAY.Jobs.Data;
+using Platform360.CIFTAY.Jobs.Services;
 
 namespace Platform360.CIFTAY.Jobs
 {
@@ -18,11 +19,11 @@ namespace Platform360.CIFTAY.Jobs
         {
             services.AddControllers();
 
-            // Add DbContext
             services.AddDbContext<ciftayContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            // Add Swagger services
+            services.AddScoped<ICalculatedDataService, CalculatedDataService>();
+
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen(c =>
             {
