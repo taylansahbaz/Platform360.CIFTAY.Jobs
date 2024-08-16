@@ -28,8 +28,8 @@ namespace Platform360.CIFTAY.Jobs.Application.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "error occupied when process data");
-                return StatusCode(500, "error occupied when process data");
+                _logger.LogError(ex, "error olustu when process data");
+                return StatusCode(500, "error olustu when process data");
             }
         }
     }

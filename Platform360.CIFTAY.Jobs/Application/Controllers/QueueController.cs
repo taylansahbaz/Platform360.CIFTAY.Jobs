@@ -24,8 +24,8 @@ public class QueueController : ControllerBase
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while sending data to the queue.");
-            return StatusCode(500, "An error occurred while sending data to the queue.");
+            _logger.LogError(ex, "An error olustu while sending data to the queue.");
+            return StatusCode(500, "An error olustu while sending data to the queue.");
         }
     }
 }

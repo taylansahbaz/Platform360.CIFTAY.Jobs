@@ -33,7 +33,7 @@ namespace Platform360.CIFTAY.Jobs.Data
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-P4DE5D4\\SQLEXPRESS;Database=ciftay;User Id=sa;Password=1");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-TH8FOGK\\SQLEXPRESS;Database=ciftay_gaz;User Id=taylan;Password=1907;");
             }
         }
 
